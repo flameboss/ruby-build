@@ -221,7 +221,7 @@ for hook in "${before_hooks[@]}"; do eval "$hook"; done
 
 # Plan cleanup on unsuccessful installation.
 cleanup() {
-  [ -z "${PREFIX_EXISTS}" ] && rm -rf "$PREFIX"
+  [ -z "${PREFIX_EXISTS}" ] && [ -z "${RBENV_BUILD_DIRTY}" ] && rm -rf "$PREFIX"
 }
 
 trap cleanup SIGINT
